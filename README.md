@@ -31,7 +31,7 @@
 <ol style="font-size: 14px;">
 <li>Abra o Postman após a instalação.</li>
 <li>No menu superior, clique em Import.</li>
-<li>Selecione a opção de <b>Upload Files</b> e escolha o arquivo .json fornecido aqui (link para o arquivo de requisições).</li>
+<li>Selecione a opção de <b>Upload Files</b> e escolha o arquivo .json fornecido aqui (<a href="https://drive.google.com/drive/folders/1aJSne_pbDsprTo1BQNFR5elG7NB8QuXU?usp=drive_link">Arquivo de Requisições</a>).</li>
 <li>Após a importação, todas as requisições da API estarão prontas para uso.</li>
 </ol>
 
