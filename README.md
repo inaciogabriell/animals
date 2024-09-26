@@ -58,14 +58,14 @@
 <li><b>Descrição:</b> Cria um novo animal com seus dados, incluindo upload de uma imagem local que será armazenada no bucket S3.</li>
 <li><b>Parâmetros (form-data):</b></li>
     <li>type (texto): Define se o animal é doméstico (true) ou selvagem (false). Esta escolha será refletida no frontend.</li>
-    <li>kind (texto): Exemplo: Suricato</li>
-    <li>animalSpecies (texto): Exemplo: Suricatus Ganhadores</li>
-    <li>age (texto): Idade do animal</li>
+    <li>kind (texto): Exemplo: Cachorro</li>
+    <li>animalSpecies (texto): Exemplo: Pinscher</li>
+    <li>age (texto): Exemplo: 4</li>
     <li>name (texto): Nome do animal</li>
     <li>sex (texto): Sexo do animal</li>
     <li>owner (texto): Nome do dono do animal</li>
-    <li>author (texto): Exemplo: Gabriel Inácio</li>
-    <li>habitat (texto): Exemplo: Selva</li>
+    <li>author (texto): Nome de quem adicionou esse animal</li>
+    <li>habitat (texto): Exemplo: Qual o habitat natural do animal, somente para animais selvagens.</li>
     <li>image (arquivo): Upload de uma imagem do animal</li></ul></li>
 
 <hr style="width: 60%; height: 2px; margin: 12px auto 8px auto; border-radius: 3px;">
