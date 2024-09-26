@@ -150,7 +150,8 @@ public class AnimalService {
     }
 
     private  String getDirectUrl(String imgName) {
-        return "https://" + bucketName + ".s3.amazonaws.com/" + imgName;
+        String encodedImgName = imgName.replace(" ", "+");
+        return "https://" + bucketName + ".s3.amazonaws.com/" + encodedImgName;
     };
 
     private String uploadImg(MultipartFile multipartFile) {
@@ -159,6 +160,8 @@ public class AnimalService {
 
         try {
             File file = this.convertMultipartToFile(multipartFile);
+
+            String encodedImgName = imgName.replace(" ", "+");
 
             PutObjectRequest putObjectRequest = PutObjectRequest.builder()
                     .bucket(bucketName)
@@ -169,7 +172,7 @@ public class AnimalService {
 
             file.delete();
 
-            return getDirectUrl(imgName);
+            return getDirectUrl(encodedImgName);
         } catch (Exception e) {
             System.out.println("Erro ao subir arquivo de imagem: " + e.getMessage());
             return "";
