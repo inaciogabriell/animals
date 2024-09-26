@@ -52,7 +52,7 @@
 <h2 style="font-weight: bold; font-size: 28px;">Endpoints da Animals API</h2>
 
 <ol>
-<li style="font-weight: bold; font-size: 20px;">Criar Animal
+<li><h3 style="font-weight: bold; font-size: 20px;">Criar Animal</h3>
 <ul style="font-weight: normal; font-size: 14px;"><li><b>Método:</b> POST</li>
 <li><b>URL:</b> 54.207.157.234:8080/animals/animal</li>
 <li><b>Descrição:</b> Cria um novo animal com seus dados, incluindo upload de uma imagem local que será armazenada no bucket S3.</li>
@@ -68,9 +68,9 @@
     <li>habitat (texto): Exemplo: Selva</li>
     <li>image (arquivo): Upload de uma imagem do animal</li></ul></li>
 
-<hr style="width: 60%; height: 3px; margin: 12px auto 8px auto; border-radius: 3px;">
+<hr style="width: 60%; height: 2px; margin: 12px auto 8px auto; border-radius: 3px;">
 
-<li style="font-weight: bold; font-size: 20px;">Criar Comida
+<li><h3 style="font-weight: bold; font-size: 20px;">Criar Comida</h3>
 <ul style="font-weight: normal; font-size: 14px;"><li><b>Método:</b> POST</li>
 <li><b>URL:</b> 54.207.157.234:8080/animals/food</li>
 <li><b>Descrição:</b> Cria uma nova comida no sistema.</li>
@@ -81,9 +81,9 @@
   <p>"price": "15.00"</p>
 }
 
-<hr style="width: 60%; height: 3px; margin: 12px auto 8px auto; border-radius: 3px;">
+<hr style="width: 60%; height: 2px; margin: 12px auto 8px auto; border-radius: 3px;">
 
-<li style="font-weight: bold; font-size: 20px;">Adicionar Nova Comida a um Animal
+<li><h3 style="font-weight: bold; font-size: 20px;">Adicionar Nova Comida a um Animal</h3>
 <ul style="font-weight: normal; font-size: 14px;"><li><b>Método:</b> POST</li>
 <li><b>URL:</b> 54.207.157.234:8080/animals/food/animal/{animalId}</li>
 <li><b>Descrição:</b> Cria uma nova comida e a associa diretamente a um animal pelo seu animalId.</li>
@@ -96,9 +96,9 @@
 
 <ul><li style="font-weight: normal; font-size: 14px;"><b>Exemplo de</b> animalId: 9729cc46-338a-4b60-8be3-6c3eb1d1c146</li></ul>
 
-<hr style="width: 60%; height: 3px; margin: 12px auto 8px auto; border-radius: 3px;">
+<hr style="width: 60%; height: 2px; margin: 12px auto 8px auto; border-radius: 3px;">
 
-<li style="font-weight: bold; font-size: 20px;">Associar Comida Existente a um Animal
+<li><h3 style="font-weight: bold; font-size: 20px;">Associar Comida Existente a um Animal</h3>
 <ul style="font-weight: normal; font-size: 14px;"><li><b>Método:</b> POST</li>
 <li><b>URL:</b> 54.207.157.234:8080/animals/food/addFoodToAnimal/{animalId}/{foodId}</li>
 <li><b>Descrição:</b> Associa uma comida existente a um animal.</li>
@@ -106,23 +106,23 @@
     <li>animalId: ID do animal ao qual você quer associar a comida.</li>
     <li>foodId: ID da comida existente a ser associada.</li></ul></li>
 
-<hr style="width: 60%; height: 3px; margin: 12px auto 8px auto; border-radius: 3px;">
+<hr style="width: 60%; height: 2px; margin: 12px auto 8px auto; border-radius: 3px;">
 
-<li style="font-weight: bold; font-size: 20px;">Buscar Todos os Animais
+<li><h3 style="font-weight: bold; font-size: 20px;">Buscar Todos os Animais</h3>
 <ul style="font-weight: normal; font-size: 14px;"><li><b>Método:</b> GET</li>
 <li><b>URL:</b> 54.207.157.234:8080/animals/animal</li>
 <li><b>Descrição:</b> Retorna a lista de todos os animais cadastrados no sistema.</li></ul></li>
 
-<hr style="width: 60%; height: 3px; margin: 12px auto 8px auto; border-radius: 3px;">
+<hr style="width: 60%; height: 2px; margin: 12px auto 8px auto; border-radius: 3px;">
 
-<li style="font-weight: bold; font-size: 20px;">Buscar Todas as Comidas
+<li><h3 style="font-weight: bold; font-size: 20px;">Buscar Todas as Comidas</h3>
 <ul style="font-weight: normal; font-size: 14px;"><li><b>Método:</b> GET</li>
 <li><b>URL:</b> 54.207.157.234:8080/animals/food</li>
 <li><b>Descrição:</b> Retorna a lista de todas as comidas cadastradas no sistema.</li></ul></li>
 
-<hr style="width: 60%; height: 3px; margin: 12px auto 8px auto; border-radius: 3px;">
+<hr style="width: 60%; height: 2px; margin: 12px auto 8px auto; border-radius: 3px;">
 
-<li style="font-weight: bold; font-size: 20px;">Buscar Animais com Filtros
+<li><h3 style="font-weight: bold; font-size: 20px;">Buscar Animais com Filtros</h3>
 <ul style="font-weight: normal; font-size: 14px;"><li><b>Método:</b> GET</li>
 <li><b>URL:</b> 54.207.157.234:8080/animals/animal/filter?page=0&size=10&type=&kind=&animalSpecies=&age=&sex&author&habitat</li>
 <li><b>Descrição:</b> Busca animais com filtros específicos. Os parâmetros opcionais incluem:</li>
@@ -136,9 +136,9 @@
     <li>author: Autor</li>
     <li>habitat: Habitat do animal</li></ul></li>
 
-<hr style="width: 60%; height: 3px; margin: 12px auto 8px auto; border-radius: 3px;">
+<hr style="width: 60%; height: 2px; margin: 12px auto 8px auto; border-radius: 3px;">
 
-<li style="font-weight: bold; font-size: 20px;">Buscar Animal por ID
+<li><h3 style="font-weight: bold; font-size: 20px;">Buscar Animal por ID</h3>
 <ul style="font-weight: normal; font-size: 14px;"><li><b>Método:</b> GET</li>
 <li><b>URL:</b> 54.207.157.234:8080/animals/animal/{animalId}</li>
 <li><b>Descrição:</b> Retorna as informações detalhadas de um animal específico, baseado no animalId.</li>
