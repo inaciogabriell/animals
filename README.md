@@ -65,7 +65,7 @@
     <li>sex (texto): Sexo do animal</li>
     <li>owner (texto): Nome do dono do animal</li>
     <li>author (texto): Nome de quem adicionou esse animal</li>
-    <li>habitat (texto): Exemplo: Qual o habitat natural do animal, somente para animais selvagens.</li>
+    <li>habitat (texto): Qual o habitat natural do animal, somente para animais selvagens.</li>
     <li>image (arquivo): Upload de uma imagem do animal</li></ul></li>
 
 <hr style="width: 60%; height: 2px; margin: 12px auto 8px auto; border-radius: 3px;">
@@ -76,8 +76,8 @@
 <li><b>Descrição:</b> Cria uma nova comida no sistema.</li>
 <li><b>Body (JSON):</b></li></ul></li>
 {
-  <p>"name": "Carne",</p>
-  <p>"whereToGet": "Mercado",</p>
+  <p>"name": "Ração",</p>
+  <p>"whereToGet": "Loja de animais",</p>
   <p>"price": "15.00"</p>
 }
 
