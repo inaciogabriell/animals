@@ -7,6 +7,7 @@ import com.radagast.animals.domain.animal.AnimalResponseDTO;
 import com.radagast.animals.domain.food.Food;
 import com.radagast.animals.entities.AnimalFoodRepository;
 import com.radagast.animals.entities.AnimalRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -71,6 +72,7 @@ public class AnimalService {
 
     }
 
+    @Transactional
     public void deleteAnimal(UUID animalId) {
             animalFoodRepository.deleteByAnimalId(animalId);
             animalRepository.deleteById(animalId);

@@ -7,6 +7,7 @@ import com.radagast.animals.domain.food.FoodResponseDTO;
 import com.radagast.animals.entities.AnimalFoodRepository;
 import com.radagast.animals.entities.AnimalRepository;
 import com.radagast.animals.entities.FoodRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -72,6 +73,7 @@ public class FoodService {
 
     }
 
+    @Transactional
     public void deleteFood(UUID foodId) {
         animalFoodRepository.deleteByFoodId(foodId);
         foodRepository.deleteById(foodId);

@@ -35,7 +35,7 @@ public class Animal {
     private String habitat;
     private String imgUrl;
 
-    @ManyToMany(mappedBy = "animals")
+    @ManyToMany(mappedBy = "animals", cascade = CascadeType.ALL)
     @JsonManagedReference
     private Set<Food> foods = new HashSet<>();
 }
