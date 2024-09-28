@@ -4,6 +4,7 @@ import com.radagast.animals.domain.animal.Animal;
 import com.radagast.animals.domain.food.Food;
 import com.radagast.animals.domain.food.FoodRequestDTO;
 import com.radagast.animals.domain.food.FoodResponseDTO;
+import com.radagast.animals.entities.AnimalFoodRepository;
 import com.radagast.animals.entities.AnimalRepository;
 import com.radagast.animals.entities.FoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class FoodService {
 
     @Autowired
     private AnimalRepository animalRepository;
+
+    @Autowired
+    private AnimalFoodRepository animalFoodRepository;
 
     public Food createFood(FoodRequestDTO data) {
 
@@ -66,6 +70,11 @@ public class FoodService {
 
         return foodRepository.save(existingFood);
 
+    }
+
+    public void deleteFood(UUID foodId) {
+        animalFoodRepository.deleteByFoodId(foodId);
+        foodRepository.deleteById(foodId);
     }
 
     public List<FoodResponseDTO> getAllFoods(int page, int size) {

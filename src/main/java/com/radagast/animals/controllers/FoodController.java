@@ -50,6 +50,12 @@ public class FoodController {
 
     }
 
+    @DeleteMapping("/{foodId}")
+    public ResponseEntity<Void> deleteFood(@PathVariable UUID foodId) {
+        foodService.deleteFood(foodId);
+        return ResponseEntity.noContent().build();
+    }
+
     @GetMapping
     public ResponseEntity<List<FoodResponseDTO>> getFood(@RequestParam(defaultValue = "0") int page,
                                                          @RequestParam(defaultValue = "10") int size) {

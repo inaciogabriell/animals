@@ -38,6 +38,12 @@ public class AnimalController {
 
     }
 
+    @DeleteMapping("/{animalId}")
+    public ResponseEntity<Void> deleteAnimal(@PathVariable UUID animalId) {
+        animalService.deleteAnimal(animalId);
+        return ResponseEntity.noContent().build();
+    }
+
     @GetMapping("/{animalId}")
     public ResponseEntity<AnimalDetailsDTO> getAnimalDetails(@PathVariable UUID animalId) {
 

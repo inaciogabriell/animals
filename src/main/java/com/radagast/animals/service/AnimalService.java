@@ -5,6 +5,7 @@ import com.radagast.animals.domain.animal.AnimalDetailsDTO;
 import com.radagast.animals.domain.animal.AnimalRequestDTO;
 import com.radagast.animals.domain.animal.AnimalResponseDTO;
 import com.radagast.animals.domain.food.Food;
+import com.radagast.animals.entities.AnimalFoodRepository;
 import com.radagast.animals.entities.AnimalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,6 +41,9 @@ public class AnimalService {
     @Autowired
     private AnimalRepository animalRepository;
 
+    @Autowired
+    private AnimalFoodRepository animalFoodRepository;
+
     public Animal createAnimal(AnimalRequestDTO data) {
 
         String imgUrl = null;
@@ -65,6 +69,11 @@ public class AnimalService {
 
         return newAnimal;
 
+    }
+
+    public void deleteAnimal(UUID animalId) {
+            animalFoodRepository.deleteByAnimalId(animalId);
+            animalRepository.deleteById(animalId);
     }
 
     public AnimalDetailsDTO getAnimalDetails(UUID animalId) {
