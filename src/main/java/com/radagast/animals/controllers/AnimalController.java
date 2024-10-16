@@ -54,9 +54,10 @@ public class AnimalController {
 
     @GetMapping
     public ResponseEntity<List<AnimalResponseDTO>> getAnimal(@RequestParam(defaultValue = "0") int page,
-                                                             @RequestParam(defaultValue = "10") int size) {
+                                                             @RequestParam(defaultValue = "10") int size,
+                                                             @RequestParam(defaultValue = "asc") String sortOrder) {
 
-        List<AnimalResponseDTO> allAnimals = this.animalService.getAllAnimals(page, size);
+        List<AnimalResponseDTO> allAnimals = this.animalService.getAllAnimals(page, size, sortOrder);
         return ResponseEntity.ok(allAnimals);
 
     }
@@ -70,9 +71,10 @@ public class AnimalController {
                                                                       @RequestParam(required = false) Integer age,
                                                                       @RequestParam(required = false) String sex,
                                                                       @RequestParam(required = false) String author,
-                                                                      @RequestParam(required = false) String habitat) {
+                                                                      @RequestParam(required = false) String habitat,
+                                                                      @RequestParam(defaultValue = "asc") String sortOrder) {
 
-        List<AnimalResponseDTO> animals = animalService.getFilteredAnimals(page, size, type, kind, animalSpecies, age, sex, author, habitat);
+        List<AnimalResponseDTO> animals = animalService.getFilteredAnimals(page, size, type, kind, animalSpecies, age, sex, author, habitat, sortOrder);
         return ResponseEntity.ok(animals);
 
     }

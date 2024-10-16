@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.core.sync.RequestBody;
@@ -108,10 +109,15 @@ public class AnimalService {
                 foodDTOs);
     }
 
-    public  List<AnimalResponseDTO> getAllAnimals(int page, int size) {
+    public  List<AnimalResponseDTO> getAllAnimals(int page, int size, String sortOrder) {
 
-        Pageable pageable = PageRequest.of(page, size);
+        Sort sort = sortOrder.equalsIgnoreCase("desc")
+                ? Sort.by("kind").descending()
+                : Sort.by("kind").ascending();
+
+        Pageable pageable = PageRequest.of(page, size, sort);
         Page<Animal> animalsPage = this.animalRepository.findAllAnimals(pageable);
+
         return animalsPage.map(
                 animal -> new AnimalResponseDTO(
                     animal.getId(),
@@ -131,7 +137,7 @@ public class AnimalService {
 
     }
 
-    public  List<AnimalResponseDTO> getFilteredAnimals (int page, int size, Boolean type, String kind, String animalSpecies, Integer age, String sex, String author, String habitat) {
+    public  List<AnimalResponseDTO> getFilteredAnimals (int page, int size, Boolean type, String kind, String animalSpecies, Integer age, String sex, String author, String habitat, String sortOrder) {
 
         kind = (kind != null) ? kind : "";
         animalSpecies = (animalSpecies != null) ? animalSpecies : "";
@@ -139,8 +145,11 @@ public class AnimalService {
         author = (author != null) ? author : "";
         habitat = (habitat != null) ? habitat : "";
 
+        Sort sort = sortOrder.equalsIgnoreCase("desc")
+                ? Sort.by("kind").descending()
+                : Sort.by("kind").ascending();
 
-        Pageable pageable = PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page, size, sort);
         Page<Animal> animalsPage = this.animalRepository.findFilteredAnimals(type, kind, animalSpecies, age, sex, author, habitat, pageable);
 
         return animalsPage.map(animal -> new AnimalResponseDTO(
