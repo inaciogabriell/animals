@@ -4,6 +4,7 @@ import com.radagast.animals.domain.animal.Animal;
 import com.radagast.animals.domain.food.Food;
 import com.radagast.animals.domain.food.FoodRequestDTO;
 import com.radagast.animals.domain.food.FoodResponseDTO;
+import com.radagast.animals.domain.food.PagedFoodResponseDTO;
 import com.radagast.animals.entities.AnimalFoodRepository;
 import com.radagast.animals.entities.AnimalRepository;
 import com.radagast.animals.entities.FoodRepository;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -79,20 +81,27 @@ public class FoodService {
         foodRepository.deleteById(foodId);
     }
 
-    public List<FoodResponseDTO> getAllFoods(int page, int size) {
+    public PagedFoodResponseDTO getAllFoods(int page, int size, String sortOrder) {
 
-        Pageable pageable = PageRequest.of(page, size);
+        Sort sort = sortOrder.equalsIgnoreCase("desc")
+                ? Sort.by("name").descending()
+                : Sort.by("name").ascending();
+
+        Pageable pageable = PageRequest.of(page, size, sort);
         Page<Food> foodsPage = this.foodRepository.findAllFoods(pageable);
-        return foodsPage.map(
+
+        List<FoodResponseDTO> foodResponseList = foodsPage.map(
                 food -> new FoodResponseDTO(
                     food.getId(),
                     food.getName(),
                     food.getWhereToGet(),
-                    food.getPrice()
-                )
-        )
+                    food.getPrice()))
                 .stream().toList();
 
+        long totalItems = foodsPage.getTotalElements();
+        int totalPages = (int) Math.ceil((double) totalItems / size);
+
+        return new PagedFoodResponseDTO(foodResponseList, totalItems, totalPages);
     }
 
     public List<Food> consultFoods(UUID animalId) {

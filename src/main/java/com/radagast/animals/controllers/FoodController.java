@@ -4,6 +4,7 @@ import com.radagast.animals.domain.animal.AnimalResponseDTO;
 import com.radagast.animals.domain.food.Food;
 import com.radagast.animals.domain.food.FoodRequestDTO;
 import com.radagast.animals.domain.food.FoodResponseDTO;
+import com.radagast.animals.domain.food.PagedFoodResponseDTO;
 import com.radagast.animals.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -57,9 +58,10 @@ public class FoodController {
     }
 
     @GetMapping
-    public ResponseEntity<List<FoodResponseDTO>> getFood(@RequestParam(defaultValue = "0") int page,
-                                                         @RequestParam(defaultValue = "10") int size) {
-        List<FoodResponseDTO> allFoods = this.foodService.getAllFoods(page, size);
+    public ResponseEntity<PagedFoodResponseDTO> getFood(@RequestParam(defaultValue = "0") int page,
+                                                        @RequestParam(defaultValue = "10") int size,
+                                                        @RequestParam(defaultValue = "asc") String sortOrder) {
+        PagedFoodResponseDTO allFoods = this.foodService.getAllFoods(page, size, sortOrder);
         return ResponseEntity.ok(allFoods);
     }
 

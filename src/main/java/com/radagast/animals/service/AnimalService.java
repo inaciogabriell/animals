@@ -1,9 +1,6 @@
 package com.radagast.animals.service;
 
-import com.radagast.animals.domain.animal.Animal;
-import com.radagast.animals.domain.animal.AnimalDetailsDTO;
-import com.radagast.animals.domain.animal.AnimalRequestDTO;
-import com.radagast.animals.domain.animal.AnimalResponseDTO;
+import com.radagast.animals.domain.animal.*;
 import com.radagast.animals.domain.food.Food;
 import com.radagast.animals.entities.AnimalFoodRepository;
 import com.radagast.animals.entities.AnimalRepository;
@@ -109,7 +106,7 @@ public class AnimalService {
                 foodDTOs);
     }
 
-    public  List<AnimalResponseDTO> getAllAnimals(int page, int size, String sortOrder) {
+    public PagedAnimalResponseDTO getAllAnimals(int page, int size, String sortOrder) {
 
         Sort sort = sortOrder.equalsIgnoreCase("desc")
                 ? Sort.by("kind").descending()
@@ -118,7 +115,7 @@ public class AnimalService {
         Pageable pageable = PageRequest.of(page, size, sort);
         Page<Animal> animalsPage = this.animalRepository.findAllAnimals(pageable);
 
-        return animalsPage.map(
+        List<AnimalResponseDTO> animalResponseList = animalsPage.map(
                 animal -> new AnimalResponseDTO(
                     animal.getId(),
                     animal.getType(),
@@ -130,11 +127,13 @@ public class AnimalService {
                     animal.getOwner(),
                     animal.getAuthor(),
                     animal.getHabitat(),
-                    animal.getImgUrl()
-                )
-        )
+                    animal.getImgUrl()))
                 .stream().toList();
 
+        long totalItems = animalsPage.getTotalElements();
+        int totalPages = (int) Math.ceil((double) totalItems / size);
+
+        return new PagedAnimalResponseDTO(animalResponseList, totalItems, totalPages);
     }
 
     public  List<AnimalResponseDTO> getFilteredAnimals (int page, int size, Boolean type, String kind, String animalSpecies, Integer age, String sex, String author, String habitat, String sortOrder) {

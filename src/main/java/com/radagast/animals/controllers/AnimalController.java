@@ -1,9 +1,6 @@
 package com.radagast.animals.controllers;
 
-import com.radagast.animals.domain.animal.Animal;
-import com.radagast.animals.domain.animal.AnimalDetailsDTO;
-import com.radagast.animals.domain.animal.AnimalRequestDTO;
-import com.radagast.animals.domain.animal.AnimalResponseDTO;
+import com.radagast.animals.domain.animal.*;
 import com.radagast.animals.service.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -53,11 +50,11 @@ public class AnimalController {
     }
 
     @GetMapping
-    public ResponseEntity<List<AnimalResponseDTO>> getAnimal(@RequestParam(defaultValue = "0") int page,
+    public ResponseEntity<PagedAnimalResponseDTO> getAnimal(@RequestParam(defaultValue = "0") int page,
                                                              @RequestParam(defaultValue = "10") int size,
                                                              @RequestParam(defaultValue = "asc") String sortOrder) {
 
-        List<AnimalResponseDTO> allAnimals = this.animalService.getAllAnimals(page, size, sortOrder);
+        PagedAnimalResponseDTO allAnimals = this.animalService.getAllAnimals(page, size, sortOrder);
         return ResponseEntity.ok(allAnimals);
 
     }
