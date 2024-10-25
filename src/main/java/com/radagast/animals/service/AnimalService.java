@@ -136,7 +136,7 @@ public class AnimalService {
         return new PagedAnimalResponseDTO(animalResponseList, totalItems, totalPages);
     }
 
-    public  List<AnimalResponseDTO> getFilteredAnimals (int page, int size, Boolean type, String kind, String animalSpecies, Integer age, String sex, String author, String habitat, String sortOrder) {
+    public  PagedAnimalResponseDTO getFilteredAnimals (int page, int size, Boolean type, String kind, String animalSpecies, Integer age, String sex, String author, String habitat, String sortOrder) {
 
         kind = (kind != null) ? kind : "";
         animalSpecies = (animalSpecies != null) ? animalSpecies : "";
@@ -151,21 +151,25 @@ public class AnimalService {
         Pageable pageable = PageRequest.of(page, size, sort);
         Page<Animal> animalsPage = this.animalRepository.findFilteredAnimals(type, kind, animalSpecies, age, sex, author, habitat, pageable);
 
-        return animalsPage.map(animal -> new AnimalResponseDTO(
-                animal.getId(),
-                animal.getType(),
-                animal.getKind(),
-                animal.getAnimalSpecies(),
-                animal.getAge(),
-                animal.getName(),
-                animal.getSex(),
-                animal.getOwner(),
-                animal.getAuthor(),
-                animal.getHabitat(),
-                animal.getImgUrl()))
+        List<AnimalResponseDTO> animalResponseList = animalsPage.map(
+                animal -> new AnimalResponseDTO(
+                    animal.getId(),
+                    animal.getType(),
+                    animal.getKind(),
+                    animal.getAnimalSpecies(),
+                    animal.getAge(),
+                    animal.getName(),
+                    animal.getSex(),
+                    animal.getOwner(),
+                    animal.getAuthor(),
+                    animal.getHabitat(),
+                    animal.getImgUrl()))
                 .stream().toList();
 
+        long totalItems = animalsPage.getTotalElements();
+        int totalPages = (int) Math.ceil((double) totalItems / size);
 
+        return new PagedAnimalResponseDTO(animalResponseList, totalItems, totalPages);
     }
 
     private  String getDirectUrl(String imgName) {

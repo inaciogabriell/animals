@@ -60,7 +60,7 @@ public class AnimalController {
     }
 
     @GetMapping("/filter")
-    public ResponseEntity<List<AnimalResponseDTO>> getFilteredAnimals(@RequestParam(defaultValue = "0") int page,
+    public ResponseEntity<PagedAnimalResponseDTO> getFilteredAnimals(@RequestParam(defaultValue = "0") int page,
                                                                       @RequestParam(defaultValue = "10") int size,
                                                                       @RequestParam(required = false) Boolean type,
                                                                       @RequestParam(required = false) String kind,
@@ -71,7 +71,7 @@ public class AnimalController {
                                                                       @RequestParam(required = false) String habitat,
                                                                       @RequestParam(defaultValue = "asc") String sortOrder) {
 
-        List<AnimalResponseDTO> animals = animalService.getFilteredAnimals(page, size, type, kind, animalSpecies, age, sex, author, habitat, sortOrder);
+        PagedAnimalResponseDTO animals = animalService.getFilteredAnimals(page, size, type, kind, animalSpecies, age, sex, author, habitat, sortOrder);
         return ResponseEntity.ok(animals);
 
     }
