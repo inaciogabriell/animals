@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -34,6 +35,7 @@ public class Animal {
     private String author;
     private String habitat;
     private String imgUrl;
+    private LocalDateTime wasAdded;
 
     @ManyToMany(mappedBy = "animals", cascade = CascadeType.ALL)
     @JsonManagedReference

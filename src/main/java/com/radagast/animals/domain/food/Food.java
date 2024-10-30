@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -27,6 +28,7 @@ public class Food {
     private String name;
     private String whereToGet;
     private Double price;
+    private LocalDateTime wasAdded;
 
     @ManyToMany
     @JoinTable(

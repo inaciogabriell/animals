@@ -21,6 +21,8 @@ import software.amazon.awssdk.services.s3.model.PutObjectResponse;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -63,6 +65,7 @@ public class AnimalService {
         newAnimal.setAuthor(data.author());
         newAnimal.setHabitat(data.habitat());
         newAnimal.setImgUrl(imgUrl);
+        newAnimal.setWasAdded(LocalDateTime.now());
 
         animalRepository.save(newAnimal);
 
@@ -103,6 +106,7 @@ public class AnimalService {
                 animal.getAuthor(),
                 animal.getHabitat(),
                 animal.getImgUrl(),
+                animal.getWasAdded(),
                 foodDTOs);
     }
 
@@ -127,7 +131,8 @@ public class AnimalService {
                     animal.getOwner(),
                     animal.getAuthor(),
                     animal.getHabitat(),
-                    animal.getImgUrl()))
+                    animal.getImgUrl(),
+                    animal.getWasAdded()))
                 .stream().toList();
 
         long totalItems = animalsPage.getTotalElements();
@@ -163,7 +168,8 @@ public class AnimalService {
                     animal.getOwner(),
                     animal.getAuthor(),
                     animal.getHabitat(),
-                    animal.getImgUrl()))
+                    animal.getImgUrl(),
+                    animal.getWasAdded()))
                 .stream().toList();
 
         long totalItems = animalsPage.getTotalElements();

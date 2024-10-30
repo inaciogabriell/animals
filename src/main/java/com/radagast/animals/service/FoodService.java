@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,6 +39,7 @@ public class FoodService {
         newFood.setName(data.name());
         newFood.setWhereToGet(data.whereToGet());
         newFood.setPrice(data.price());
+        newFood.setWasAdded(LocalDateTime.now());
 
         foodRepository.save(newFood);
 
@@ -55,6 +57,7 @@ public class FoodService {
         food.setName(foodData.name());
         food.setWhereToGet(foodData.whereToGet());
         food.setPrice(foodData.price());
+        food.setWasAdded(LocalDateTime.now());
 
         food.getAnimals().add(animal);
 
@@ -95,7 +98,8 @@ public class FoodService {
                     food.getId(),
                     food.getName(),
                     food.getWhereToGet(),
-                    food.getPrice()))
+                    food.getPrice(),
+                    food.getWasAdded()))
                 .stream().toList();
 
         long totalItems = foodsPage.getTotalElements();

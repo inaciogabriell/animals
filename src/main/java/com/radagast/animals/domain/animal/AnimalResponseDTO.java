@@ -1,5 +1,6 @@
 package com.radagast.animals.domain.animal;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record AnimalResponseDTO(
@@ -13,6 +14,7 @@ public record AnimalResponseDTO(
         String owner,
         String author,
         String habitat,
-        String imgUrl
+        String imgUrl,
+        LocalDateTime wasAdded
 ) {
 }

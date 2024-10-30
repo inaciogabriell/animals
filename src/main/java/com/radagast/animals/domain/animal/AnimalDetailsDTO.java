@@ -1,5 +1,6 @@
 package com.radagast.animals.domain.animal;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,6 +16,7 @@ public record AnimalDetailsDTO(
         String author,
         String habitat,
         String imgUrl,
+        LocalDateTime wasAdded,
         List<FoodDTO> foods
 ) {
     public record FoodDTO(

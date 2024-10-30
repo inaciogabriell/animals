@@ -1,0 +1,5 @@
+ALTER TABLE animal
+ADD COLUMN was_added TIMESTAMP;
+
+ALTER TABLE food
+ADD COLUMN was_added TIMESTAMP;
