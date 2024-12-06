@@ -72,6 +72,10 @@ public class FoodService {
         Animal newAnimal = animalRepository.findById(animalId)
                 .orElseThrow(() -> new IllegalArgumentException("Animal not found."));
 
+        if ( existingFood.getAnimals().contains(newAnimal)) {
+            throw new IllegalArgumentException("This food is already added to the animal.");
+        }
+
         existingFood.getAnimals().add(newAnimal);
 
         return foodRepository.save(existingFood);
